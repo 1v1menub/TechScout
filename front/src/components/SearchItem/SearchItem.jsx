@@ -16,11 +16,11 @@ function SearchItem({img, name, price, shopname, description, rating, tags}) {
                 <div className="description-cont">
                     <span className="search-item-description">{description}</span>
                 </div>
-                <div className="tags-cont">
+                <div className="search-item-tags-cont">
                     {tags.map((tagname) => {
-                        return <div className="tag">{tagname}</div>
+                        return <div className="search-item-tag">{tagname}</div>
                     })}
-                <a className="shop" href={shopname}>{shopname}</a>
+                <a className="search-item-shop" href={shopname}>{shopname}</a>
                 </div>
             </div>
         </div>
