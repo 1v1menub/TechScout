@@ -4,3 +4,12 @@
     flex-direction: column;
     width: 80vw;
 }
+
+.redcoso {
+    width: 50%;
+    background-color: red;
+}
+
+.testcont {
+    display: flex;
+}
