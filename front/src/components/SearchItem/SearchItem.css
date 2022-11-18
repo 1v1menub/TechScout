@@ -41,18 +41,18 @@
     color: gray;
 }
 
-.tags-cont {
+.search-item-tags-cont {
     display: flex;
     align-items: center;
 }
 
-.shop {
+.search-item-shop {
     margin-left: auto;
     font-style: none;
     color: gray;
 }
 
-.tag {
+.search-item-tag {
     border: 2px solid lightgray;
     border-radius: 10%;
     padding: 3px;
