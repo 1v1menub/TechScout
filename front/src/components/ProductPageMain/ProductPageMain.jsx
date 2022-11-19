@@ -2,8 +2,10 @@ import { useState } from "react"
 import ratingstar from "../../assets/ratingstar.svg"
 import timelogo from "../../assets/timelogo.svg"
 import "./ProductPageMain.css"
+import { ProductInfo } from "../../utils/ProductInfo"
+import { StoreInfo } from "../../utils/StoreInfo"
 
-function ProductPageMain({images, name, price, description, rating, tags, specs, stores, dtime}) {
+function ProductPageMain(products_data: { product: ProductInfo, store: StoreInfo[] }[]) {
 
     const [index, setIndex] = useState(0)
 
@@ -15,7 +17,7 @@ function ProductPageMain({images, name, price, description, rating, tags, specs,
                 <div className="product-page-img-nav-buttons-cont">
                     {images.map((img, i) => {
                         console.log(i)
-                        return <div id={i} style={{backgroundColor: index === i ? "#505050" : "lightgray"}} onClick={() => {setIndex(i)}} className="product-page-img-nav-button"></div>
+                        return <div id={i} style={{ backgroundColor: index === i ? "#505050" : "lightgray" }} onClick={() => { setIndex(i) }} className="product-page-img-nav-button"></div>
                     })}
                 </div>
             </div>
