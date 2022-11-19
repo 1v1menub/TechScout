@@ -21,6 +21,9 @@
     width: fit-content;
     padding-top: 5px;
     max-width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding-bottom: 5px;
     padding-left: 15px;
     padding-right: 15px;
