@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+* {
+  font-family: 'Open Sans', sans-serif;
+}
+
 .App {
     display: flex;
     align-items: center;
@@ -16,11 +22,40 @@
 }
 
 .testcont2 {
+
     display: flex;
     height: max-content;
     overflow-y: hidden;
     width: 100%;
     padding-bottom: 30px;
+    padding-left: 30px;
+
     scrollbar-width: none;
     background-color: rgb(247, 247, 247);
+}
+
+.testcont3{
+  display:flex;
+  width: 100vw;
+  /* gap: 1%; */
+
+}
+/* custom scrollbar */
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d6dee1;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a8bbbf;
 }
