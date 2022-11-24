@@ -29,9 +29,9 @@
     width: 100%;
     padding-bottom: 30px;
     padding-left: 30px;
-
     scrollbar-width: none;
     background-color: rgb(247, 247, 247);
+    z-index: 100;
 }
 
 .testcont3{
@@ -58,4 +58,13 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: #a8bbbf;
+}
+
+.main-body{
+  display: grid;
+  float: left;
+  justify-content: center;
+  align-content: space-evenly;
+  justify-items: stretch;
+  align-items: center;
 }

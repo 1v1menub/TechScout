@@ -1,0 +1,109 @@
+
+.Search-Button{
+    background-color: aquamarine;
+    display: inline-block;
+    background-image: url(
+        './img/search.png');
+    background-size: cover;
+    width: 23px;
+    height: 25px;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: hidden;
+    margin-left: 7px;
+    margin-right: 7px;
+}
+
+.Search-Button:hover{
+    border-radius: 10px;
+    border-color: #EFEFEF;
+    stroke-width: 2px;
+}
+.sup-bar{
+    display: grid;
+    padding: 15px;
+    border-radius: 15px;
+    margin: 15px;
+    margin-left: 25px;
+    height: 50%;
+    top:0px;
+    gap: 0.5em;
+    grid-template-columns: auto 0.5px auto 0.5px auto;
+    justify-items: start;
+}
+.searching-container{
+    display: flex;
+    width: 500px;
+    align-items: center;
+    border-radius: 10px;
+    background-color:#FCFCFD;
+    border: 2px solid #EFEFEF;
+}
+
+.opts{
+    display: grid;
+    gap: 5em;
+    grid-template-columns: auto 0.5px auto;
+    justify-items: center;
+    align-content: center;
+    align-items: center;
+    justify-content: space-around;
+}
+.search-form{
+    display: grid;
+    gap: 0.5px;
+    grid-template-columns: auto 15px auto;
+    justify-items: start;
+    /* margin-left: 15px; */
+    width: 100%;
+    justify-content: start;
+    align-content: center;
+    float: left;
+}
+
+.input-text{
+    width: 250px;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: hidden;
+    outline: none;
+    background-color: #FCFCFD;
+    margin-left: 7px;
+    margin-right: 7px;
+}
+
+.input-text:focus{
+    outline: none;
+}
+
+
+.filter-button{
+    background-color: aquamarine;
+    display: inline-block;
+    background-image: url(
+        './img/filter.png');
+    background-size: cover;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: hidden;
+    width: 34px;
+    height: 26px;
+}
+
+.location-button{
+    background-color: aquamarine;
+    display: inline-block;
+    background-image: url(
+        './img/location.png');
+    background-size: cover;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: hidden;
+    width: 27px;
+    height: 30px;
+    margin-left: 5em;
+}
