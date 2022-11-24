@@ -116,7 +116,6 @@ function App() {
             path="/welcomescreen"
             element={
               <div className="testcont3">
-              <div className="testcont3">
                 <SideBar
                   user_image={UserIcon}
                   // user_image="https://prnewswire2-a.akamaihd.net/p/1893751/sp/189375100/thumbnail/entry_id/0_5yec68sk/def_height/2700/def_width/2700/version/100012/type/1"
