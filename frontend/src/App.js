@@ -134,22 +134,11 @@ function App() {
 
                   <div className="testcont2">
                     {featured.map((product) => {
-                      return <ProductCard image={product.webpage_view} name={product.product_name} rating={4.9} tags={product.tags.split(", ")} dtime="2-3" />
+                      return <ProductCard image={product.webpage_view} name={product.product_name} rating={(Math.random() * 5).toFixed(1)} tags={product.tags.split(", ")} dtime={() => {
+                        const posibilidades = ["2-3", "3-4", "5-7", "10-14"]
+                        return posibilidades[Math.floor(Math.random() * 4)]
+                    }} />
                     })}
-                    <ProductCard
-                      image="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8OHx8fGVufDB8fHx8&w=1000&q=80"
-                      name="Asus Gamer-Beast 4545 18''"
-                      rating={4.6}
-                      tags={['Asus', 'Gaming', 'Nvidia', 'SSD']}
-                      dtime="2-3"
-                    />
-                    <ProductCard
-                      image="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8OHx8fGVufDB8fHx8&w=1000&q=80"
-                      name="Asus Gamer-Beast 4545 18''"
-                      rating={4.6}
-                      tags={['Asus', 'Gaming', 'Nvidia', 'SSD']}
-                      dtime="2-3"
-                    />
                   </div>
                 </div>
               </div>
