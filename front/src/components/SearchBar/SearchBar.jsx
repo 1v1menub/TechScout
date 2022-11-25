@@ -4,18 +4,25 @@ import React from 'react';
 function SearchBar() {
   return (
     <div className="sup-bar">
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,1,-25"
+      />
       <div className="searching-container">
         <form className="search-form">
-          <button type="submit" className="Search-Button"></button>
+          <button type="submit" className="Search-Button">
+            <i class="material-symbols-outlined" style={{ color: '#9796a1' }}>
+              search
+            </i>
+          </button>
           <input className="input-text" placeholder="Buscar..." />
         </form>
       </div>
       <div className="opts">
-        <div className ="filter-b">
-          <button img className="filter-button">
-          </button>
+        <div>
+          <i img className="filter-button"></i>
         </div>
-        <div className="location-b">
+        <div>
           <button className="location-button"> </button>
         </div>
       </div>

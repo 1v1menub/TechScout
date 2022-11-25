@@ -32,14 +32,7 @@ function App() {
           />
 
           {/* enviar busqueda aca */}
-          <Route 
-            path="/search"
-            element={
-              <SearchResult
-                search="mock"
-              />
-            }
-          />
+          <Route path="/search" element={<SearchResult search="mock" />} />
 
           <Route
             path="/productpagemain"
@@ -124,51 +117,50 @@ function App() {
                 <div className="main-body">
                   <SearchBar />
 
- 
-                <div className="testcont2">
-                      <ProductCard
-                        image="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8OHx8fGVufDB8fHx8&w=1000&q=80"
-                        name="Asus Gamer-Beast 4545 18''"
-                        rating={4.6}
-                        tags={['Asus', 'Gaming', 'Nvidia', 'SSD']}
-                        dtime="2-3"
-                      />
-                      <ProductCard
-                        image="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8OHx8fGVufDB8fHx8&w=1000&q=80"
-                        name="Asus Gamer-Beast 4545 18''"
-                        rating={4.6}
-                        tags={['Asus', 'Gaming', 'Nvidia', 'SSD']}
-                        dtime="2-3"
-                      />
-                      <ProductCard
-                        image="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8OHx8fGVufDB8fHx8&w=1000&q=80"
-                        name="Asus Gamer-Beast 4545 18''"
-                        rating={4.6}
-                        tags={['Asus', 'Gaming', 'Nvidia', 'SSD']}
-                        dtime="2-3"
-                      />
-                      <ProductCard
-                        image="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8OHx8fGVufDB8fHx8&w=1000&q=80"
-                        name="Asus Gamer-Beast 4545 18''"
-                        rating={4.6}
-                        tags={['Asus', 'Gaming', 'Nvidia', 'SSD']}
-                        dtime="2-3"
-                      />
-                      <ProductCard
-                        image="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8OHx8fGVufDB8fHx8&w=1000&q=80"
-                        name="Asus Gamer-Beast 4545 18''"
-                        rating={4.6}
-                        tags={['Asus', 'Gaming', 'Nvidia', 'SSD']}
-                        dtime="2-3"
-                      />
-                      <ProductCard
-                        image="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8OHx8fGVufDB8fHx8&w=1000&q=80"
-                        name="Asus Gamer-Beast 4545 18''"
-                        rating={4.6}
-                        tags={['Asus', 'Gaming', 'Nvidia', 'SSD']}
-                        dtime="2-3"
-                      />
-                    </div>
+                  <div className="testcont2">
+                    <ProductCard
+                      image="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8OHx8fGVufDB8fHx8&w=1000&q=80"
+                      name="Asus Gamer-Beast 4545 18''"
+                      rating={4.6}
+                      tags={['Asus', 'Gaming', 'Nvidia', 'SSD']}
+                      dtime="2-3"
+                    />
+                    <ProductCard
+                      image="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8OHx8fGVufDB8fHx8&w=1000&q=80"
+                      name="Asus Gamer-Beast 4545 18''"
+                      rating={4.6}
+                      tags={['Asus', 'Gaming', 'Nvidia', 'SSD']}
+                      dtime="2-3"
+                    />
+                    <ProductCard
+                      image="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8OHx8fGVufDB8fHx8&w=1000&q=80"
+                      name="Asus Gamer-Beast 4545 18''"
+                      rating={4.6}
+                      tags={['Asus', 'Gaming', 'Nvidia', 'SSD']}
+                      dtime="2-3"
+                    />
+                    <ProductCard
+                      image="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8OHx8fGVufDB8fHx8&w=1000&q=80"
+                      name="Asus Gamer-Beast 4545 18''"
+                      rating={4.6}
+                      tags={['Asus', 'Gaming', 'Nvidia', 'SSD']}
+                      dtime="2-3"
+                    />
+                    <ProductCard
+                      image="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8OHx8fGVufDB8fHx8&w=1000&q=80"
+                      name="Asus Gamer-Beast 4545 18''"
+                      rating={4.6}
+                      tags={['Asus', 'Gaming', 'Nvidia', 'SSD']}
+                      dtime="2-3"
+                    />
+                    <ProductCard
+                      image="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8OHx8fGVufDB8fHx8&w=1000&q=80"
+                      name="Asus Gamer-Beast 4545 18''"
+                      rating={4.6}
+                      tags={['Asus', 'Gaming', 'Nvidia', 'SSD']}
+                      dtime="2-3"
+                    />
+                  </div>
                 </div>
                 {/* <WelcomePage /> */}
               </div>

@@ -5,10 +5,11 @@
 }
 
 .App {
-    display: flex;
+  overflow: hidden;
+    /* display: flex;
     align-items: center;
-    flex-direction: column;
-    width: 80vw;
+    flex-direction: column; */
+    /* width: 80vw; */
     height: 100%;
 }
 
@@ -24,14 +25,22 @@
 .testcont2 {
 
     display: flex;
-    height: max-content;
-    overflow-y: hidden;
-    width: 100%;
+    height: 500px;
+    /* overflow-y: hidden; */
+    overflow-x:scroll;
+    overflow-y:visible;
+    width: 90%;
     padding-bottom: 30px;
     padding-left: 30px;
-    scrollbar-width: none;
+    padding-right: 30px;
+    /* margin-right: -300px; */
+    
     background-color: rgb(247, 247, 247);
-    z-index: 100;
+    /* z-index: 100; */
+    /* height:40%; */
+    /* padding-bottom: 2%; */
+    max-height: 45%;
+    /* margin: 10%; */
 }
 
 .testcont3{
@@ -61,10 +70,17 @@
 }
 
 .main-body{
-  display: grid;
+  /* overflow:hidden; */
+  overflow: hidden;
+  display:flex;
+  flex-direction: column;
+  /* display: */
+  /* display: grid; */
   float: left;
-  justify-content: center;
-  align-content: space-evenly;
-  justify-items: stretch;
-  align-items: center;
+  /* justify-content: center; */
+  /* align-content: space-evenly; */
+  /* justify-items: stretch; */
+  /* align-items: top; */
+  padding-top: 10%;
+  z-index: 0;
 }
