@@ -1,9 +1,19 @@
-import { useState } from 'react';
-// import ratingstar from '../../assets/ratingstar.svg';
-// import timelogo from '../../assets/timelogo.svg';
-import './WelcomePage.css';
+import { useState } from "react";
+import ratingstar from "../../assets/ratingstar.svg";
+import timelogo from "../../assets/timelogo.svg";
+import "./WelcomePage.css";
 
-function WelcomePage({ images, name, price, description, rating, tags, specs, stores, dtime }) {
+function WelcomePage({
+  images,
+  name,
+  price,
+  description,
+  rating,
+  tags,
+  specs,
+  stores,
+  dtime,
+}) {
   const [index, setIndex] = useState(0);
 
   return (
@@ -16,11 +26,14 @@ function WelcomePage({ images, name, price, description, rating, tags, specs, st
             return (
               <div
                 id={i}
-                style={{ backgroundColor: index === i ? '#505050' : 'lightgray' }}
+                style={{
+                  backgroundColor: index === i ? "#505050" : "lightgray",
+                }}
                 onClick={() => {
                   setIndex(i);
                 }}
-                className="product-page-img-nav-button"></div>
+                className="product-page-img-nav-button"
+              ></div>
             );
           })}
         </div>

@@ -6,7 +6,7 @@ import ProductCard from './components/ProductCard/ProductCard';
 import WelcomePage from './components/WelcomePage/WelcomePage';
 import SideBar from './components/SideBar/SideBar';
 import SearchResult from './components/SearchResult/SearchResult';
-
+import ProductCrud from './components/ProductCrud/ProductCrud';
 import UserIcon from './assets/user_icon.png';
 import './App.css';
 import SearchBar from './components/SearchBar/SearchBar';
@@ -62,7 +62,7 @@ function App() {
               </div>
             }
           />
-
+          <Route path="/product-crud" element={<ProductCrud />} />
           <Route
             path="/productcard"
             element={
