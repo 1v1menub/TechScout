@@ -2,16 +2,22 @@ import './SearchBar.css';
 import React from 'react';
 import { useState } from 'react';
 import searchProductByName from '../../api/searchProductByName';
+import { useNavigate } from 'react-router-dom';
 
-function SearchBar() {
+function SearchBar({ updateSetSearchResult }) {
   const [search, setSearch] = useState('');
+  const navigate = useNavigate();
+
   const searchProduct = async (event) => {
     event.preventDefault();
 
     try {
-      response = await searchProductByName(search);
+      const response = await searchProductByName(search);
+      console.log(response.data);
+      updateSetSearchResult(response.data);
+      navigate('/search');
     } catch (e) {
-      print(e);
+      console.log(e);
       alert('Error while searching product');
     }
   };

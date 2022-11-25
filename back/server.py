@@ -4,7 +4,6 @@ from flask import Flask
 from flask import jsonify
 from flask_cors import CORS
 
-from init_db import create_all
 from utils.db_functions import get_query_results
 load_dotenv("../.env")
 

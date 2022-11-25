@@ -2,8 +2,6 @@ import SearchItem from '../SearchItem/SearchItem';
 import ProductCard from '../ProductCard/ProductCard';
 import ProductCardSearch from '../ProductCard/ProductCardSearch';
 
-
-
 import './SearchResult.css';
 
 const data = [
@@ -81,7 +79,7 @@ const data = [
 //                   />
 
 function SearchResult({ search }) {
-  const searchResults = data.map((item, index) => (
+  const searchResults = search.map((item, index) => (
     <ProductCardSearch
       image="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8OHx8fGVufDB8fHx8&w=1000&q=80"
       name={item.product_name}
@@ -94,12 +92,10 @@ function SearchResult({ search }) {
     // <div >{item.category},{item.product_id},{item.product_name},{item.subcategory}</div>
   ));
   return (
-    <div className='main-screen'>
+    <div className="main-screen">
       <div>busqueda:</div>
 
-      <div className='result-grid'>
-        {searchResults}
-      </div> 
+      <div className="result-grid">{searchResults}</div>
     </div>
   );
 }
