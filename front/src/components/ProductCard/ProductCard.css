@@ -42,6 +42,8 @@
     border-top-left-radius: 20px;
     background-size: cover;
     object-fit: 100%;
+    /* background-position: center; 
+    background-repeat: no-repeat; */
 }
 
 .product-card-rating-cont {

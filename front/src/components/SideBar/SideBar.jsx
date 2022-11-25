@@ -9,7 +9,6 @@ function SideBar({ user_image, user_name }) {
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,1,-25"
       />
-      {/* <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /> */}
       <div className="top-profile">
         <img className="rounded" src={user_image} />
         <div>
@@ -21,7 +20,7 @@ function SideBar({ user_image, user_name }) {
 
       <div className="options">
         <div>
-          <a href="" className="option-text">
+          <a href="/" className="option-text">
             <i class="material-symbols-outlined" style={{ color: '#fff' }}>
               description
             </i>
@@ -30,7 +29,7 @@ function SideBar({ user_image, user_name }) {
         </div>
 
         <div>
-          <a href="" className="option-text">
+          <a href="/" className="option-text">
             <i class="material-symbols-outlined" style={{ color: '#fff' }}>
               person
             </i>
@@ -38,19 +37,19 @@ function SideBar({ user_image, user_name }) {
           </a>
         </div>
 
-        <a href="" className="option-text">
+        <a href="/" className="option-text">
           <span class="material-symbols-outlined" style={{ color: '#fff' }}>
             settings
           </span>
           Configuracion
         </a>
-        <a href="" className="option-text">
+        <a href="/" className="option-text">
           <span class="material-symbols-outlined" style={{ color: '#fff' }}>
             contact_support
           </span>
           Preguntas Frecuentes
         </a>
-        <a href="" className="option-text">
+        <a href="/" className="option-text">
           <span class="material-symbols-outlined" style={{ color: '#fff' }}>
             logout
           </span>
