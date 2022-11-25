@@ -10,12 +10,17 @@ import ProductCrud from './components/ProductCrud/ProductCrud';
 import UserIcon from './assets/user_icon.png';
 import './App.css';
 import SearchBar from './components/SearchBar/SearchBar';
+import getProducts from './api/products.js/getProducts';
 
 function App() {
   const [searchResult, setSearchResult] = useState([]);
   const updateSetSearchResult = (searchResultNew) => {
     setSearchResult(searchResultNew);
   };
+
+  const [featured, setFeatured] = useState(() => {
+    return getProducts()
+  })
 
   return (
     <div className="App">
@@ -37,7 +42,6 @@ function App() {
                 </div>
               </div>
               // <SearchResult search={searchResult} />
-
             }
           />
 
@@ -125,34 +129,9 @@ function App() {
                   <SearchBar updateSetSearchResult={updateSetSearchResult} />
 
                   <div className="testcont2">
-                    <ProductCard
-                      image="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8OHx8fGVufDB8fHx8&w=1000&q=80"
-                      name="Asus Gamer-Beast 4545 18''"
-                      rating={4.6}
-                      tags={['Asus', 'Gaming', 'Nvidia', 'SSD']}
-                      dtime="2-3"
-                    />
-                    <ProductCard
-                      image="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8OHx8fGVufDB8fHx8&w=1000&q=80"
-                      name="Asus Gamer-Beast 4545 18''"
-                      rating={4.6}
-                      tags={['Asus', 'Gaming', 'Nvidia', 'SSD']}
-                      dtime="2-3"
-                    />
-                    <ProductCard
-                      image="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8OHx8fGVufDB8fHx8&w=1000&q=80"
-                      name="Asus Gamer-Beast 4545 18''"
-                      rating={4.6}
-                      tags={['Asus', 'Gaming', 'Nvidia', 'SSD']}
-                      dtime="2-3"
-                    />
-                    <ProductCard
-                      image="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8OHx8fGVufDB8fHx8&w=1000&q=80"
-                      name="Asus Gamer-Beast 4545 18''"
-                      rating={4.6}
-                      tags={['Asus', 'Gaming', 'Nvidia', 'SSD']}
-                      dtime="2-3"
-                    />
+                    {featured.map((product) => {
+                      return <ProductCard image={product.webpage_view} name={product.product_name} rating={4.9} tags={product.tags.split(", ")} dtime="2-3" />
+                    })}
                     <ProductCard
                       image="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8OHx8fGVufDB8fHx8&w=1000&q=80"
                       name="Asus Gamer-Beast 4545 18''"
