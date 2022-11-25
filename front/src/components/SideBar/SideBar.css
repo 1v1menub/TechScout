@@ -1,0 +1,118 @@
+
+.navbar {
+  position:sticky;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  justify-content: start;
+  height: 100vh;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+  width: 30vw;
+  min-width: 220px;
+  max-width: 300px;
+  /* width: 35%; */
+  align-items: left;
+  /* gap: 5%; */
+
+  /* height: 100%; */
+  /* margin-right: 2.5vw; */
+  aspect-ratio: 1/1;
+  background-color: #5b65e6;
+  /* display: flex; */
+  /* flex-direction: column; */
+  z-index: 10000;
+}
+
+img.rounded {
+  object-fit: cover;
+  border-radius: 43%;
+  height: 65%;
+  /* width: 100%; */
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  aspect-ratio: 1/1;
+  transition: all 150ms ease; 
+
+}
+img.rounded:hover{
+  font-weight: 600;
+  background-color: #ffc52a;
+  height: 70%;
+
+  border-radius: 10px;
+  /* /* padding: 10px; */
+  font-size: 20px; 
+
+}
+
+.top-profile {
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-top: 10%;
+  align-items: center;
+  /* justify-content: flex-end; */
+  gap: 10%;
+  margin-bottom: 10%;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  min-height: 40%;
+  padding: 8%;
+  justify-content: space-around;
+  gap: 10%;
+  /* opacity: 90%; */
+
+  /* padding-top: 0%; */
+  /* border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px; */
+}
+
+.option-text {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  gap: 9%;
+  /* font-weight: normal; */
+  font-weight: 300;
+  font-size: 18px;
+  opacity: 85%;
+
+  text-shadow: 0 1px 1px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.13);
+
+  align-items: center;
+  transition: all 150ms ease; 
+
+}
+.option-text:hover{
+  /* box-shadow: 0 7px 14px rgba(0,0,0,0.25), 0 3px 3px rgba(0,0,0,0.12); */
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  /* transition: all 0.3s cubic-bezier(.25,.8,.25,1); */
+  /* height: 65%; */
+  /* aspect-ratio: 10/1; */
+  background-color: #ffc52a;
+  /* border-radius: 10%; */
+  font-weight: 600;
+
+  border-radius: 10px;
+  padding: 10px;
+
+  font-size: 20px;
+
+}
+
+.username-text {
+  text-shadow: 0 1px 2px rgba(0,0,0,0.46), 0 3px 6px rgba(0,0,0,0.03);
+  color:#fffef9;
+  font-weight: 500;
+  font-size: 22px;
+  opacity: 85%;
+}
+
+a {
+  color: #fffef9;
+  text-decoration: none; /* no underline */
+}
