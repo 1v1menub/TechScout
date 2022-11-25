@@ -80,12 +80,14 @@ const data = [
 
 function SearchResult({ search }) {
   const searchResults = search.map((item, index) => (
+  // const searchResults = data.map((item, index) => (
     <ProductCardSearch
-      image="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8OHx8fGVufDB8fHx8&w=1000&q=80"
+      // image="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8OHx8fGVufDB8fHx8&w=1000&q=80"
+      image={item.webpage_view}
       name={item.product_name}
       rating={4.6}
       tags={[item.subcategory]}
-      price={5000.99}
+      price={item.base_price}
       // shopname="a"
       description={item.category}
     />
@@ -93,7 +95,7 @@ function SearchResult({ search }) {
   ));
   return (
     <div className="main-screen">
-      <div>busqueda:</div>
+      {/* <div>busqueda:</div> */}
 
       <div className="result-grid">{searchResults}</div>
     </div>

@@ -1,17 +1,18 @@
 .main-screen {
-  display: flex;
-  flex-direction: column;
-  align-items: right;
-  height: 100%;
-  width: 100%;
-  justify-content: right;
-  
+  display: block;
+  /* flex-direction: column; */
+  /* align-items: right; */
+  /* height: 100%; */
+  /* width: 100%; */
+  /* justify-content: right; */
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .result-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  /* grid-template-columns: repeat(3, 1fr); */
+  /* grid-template-columns: repeat(5, 1fr); */
   /* grid-template-columns: repeat(auto-fill, minmax(1%, 1fr)); */
   gap: 10px;
   /* grid-column-end: span 2; */
@@ -29,7 +30,6 @@
   gap: 10px;
   grid-auto-flow: dense;
 }
-
 .wrapper li.landscape {
   grid-column-end: span 2;
 } */
