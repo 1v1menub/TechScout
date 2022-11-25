@@ -3,13 +3,15 @@ import React from 'react';
 import { useState } from 'react';
 import searchProductByName from '../../api/searchProductByName';
 
-function SearchBar() {
+function SearchBar({ updateSetSearchResult }) {
   const [search, setSearch] = useState('');
   const searchProduct = async (event) => {
     event.preventDefault();
 
     try {
       const response = await searchProductByName(search);
+      console.log(response.data);
+      updateSetSearchResult(response.data);
     } catch (e) {
       console.log(e);
       alert('Error while searching product');

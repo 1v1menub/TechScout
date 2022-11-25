@@ -12,6 +12,11 @@ import './App.css';
 import SearchBar from './components/SearchBar/SearchBar';
 
 function App() {
+  const [searchResult, setSearchResult] = useState([]);
+  const updateSetSearchResult = (searchResultNew) => {
+    setSearchResult(searchResultNew);
+  };
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -32,7 +37,7 @@ function App() {
           />
 
           {/* enviar busqueda aca */}
-          <Route path="/search" element={<SearchResult search="mock" />} />
+          <Route path="/search" element={<SearchResult search={searchResult} />} />
 
           <Route
             path="/productpagemain"
@@ -115,7 +120,7 @@ function App() {
                   user_name="PEPE"
                 />
                 <div className="main-body">
-                  <SearchBar />
+                  <SearchBar updateSetSearchResult={updateSetSearchResult} />
 
                   <div className="testcont2">
                     <ProductCard
