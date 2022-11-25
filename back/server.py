@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 from flask import jsonify
 from flask import request, json
 from flask import Flask
-from endpoints.product.get import getallquery
+from endpoints.product.get import getallqueryid, getallquery, getonequeryid, getproductidlist, productidexists, getstoreidlist, storeidexists
 
 from flask_cors import CORS
 
@@ -16,11 +16,40 @@ cors = CORS(app)
 app.config["CORS_HEADERS"] = "Content-Type"
 
 
+"""
+GET
+"""
 @app.route("/api/allproducts/<id>")
-def allproductsquery(id):
-    return getallquery({"store_id": id})
+def allstoreproductsquery(id):
+    return getallqueryid({"store_id": id})
 
+@app.route("/api/allproducts/")
+def allproductsquery():
+    return getallquery()
 
+@app.route("/api/oneproduct/<s_id>/<p_id>")
+def oneproductquery(s_id,p_id):    
+    return getonequeryid({"store_id": s_id, "product_id": p_id})
+
+@app.route("/api/productids/")
+def productidquery():
+    return getproductidlist()
+
+@app.route("/api/productids/<id>")
+def productidexistsquery(id):
+    return productidexists({"product_id": id})
+
+@app.route("/api/storeids/")
+def storeidquery():
+    return getstoreidlist()
+
+@app.route("/api/storeids/<id>")
+def storeidexistsquery(id):
+    return storeidexists({"store_id": id})
+
+"""
+POST
+"""
 @app.route("/api/queryproductsbyname", methods=["POST"])
 def namequery():
     if request.method == "POST":
@@ -61,11 +90,18 @@ def namequery():
     
 
 @app.route("/api/insertgeneralproduct", methods=["POST"])
+def insert_general_prod():
+    if request.method == "POST":
+        return insert_general_product(request)
+
+
+@app.route("/api/insertstoreproduct", methods=["POST"])
 def insert_store_prod():
     if request.method == "POST":
         return insert_store_product(request)
 
 
+    
 # store_id = 0
 # product_id = 3
 # base_price = 132.29
