@@ -26,6 +26,12 @@ function App() {
 
   const [featured, setFeatured] = useState([]);
 
+  const randomDtime = () => {
+    const posibilidades = ["2-3", "3-5", "7-10", "10-14"]
+    return posibilidades[(Math.floor(Math.random() * 4))]
+  }
+
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -131,14 +137,9 @@ function App() {
                 />
                 <div className="main-body">
                   <SearchBar updateSetSearchResult={updateSetSearchResult} />
-
                   <div className="testcont2">
                     {featured.map((product) => {
-                      return <ProductCard image={product.webpage_view} name={product.product_name} rating={(Math.random() * 5).toFixed(1)} tags={product.tags.split(", ")} dtime={() => {
-                        const posibilidades = ["2-3", "3-4", "5-7", "10-14"]
-                        return posibilidades[Math.floor(Math.random() * 4)]
-                    }} />
-                    })}
+                      return <ProductCard image={product.webpage_view} name={product.product_name} rating={(Math.random() * 5).toFixed(1)} tags={product.tags.split(", ")} dtime={randomDtime()}/> })}
                   </div>
                 </div>
               </div>
