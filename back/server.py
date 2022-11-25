@@ -47,19 +47,15 @@ def namequery():
       search_query = data['search_query']
       # max_returns = data['max_returns']
       max_returns = 25
-
-      try:
-        conn = get_db_connection()
-      except:
-        print('error in connection')
-        return None
-      with conn:
-        with conn.cursor(cursor_factory=RealDictCursor) as cur:
-          cur.execute('select * from product where name like %s limit %s;', ('%'+search_query+'%', max_returns))
-          products = jsonify(cur.fetchall())
-          cur.close()
-          conn.close()
-          return products
+      conn = get_db_connection()
+      
+      cur = conn.cursor(cursor_factory=RealDictCursor)
+      cur.execute('select * from product where product_name like %s limit %s;', ('%'+search_query+'%', max_returns))
+      products = jsonify(cur.fetchall())
+      cur.close()
+      conn.close()
+      
+      return products
     #   cur = conn.cursor(cursor_factory=RealDictCursor)
     #   cur.execute(f"SELECT * FROM product ORDER BY SIMILARITY(product_name,'{search_query}') DESC LIMIT {max_returns};")
     #   products = jsonify(cur.fetchall())

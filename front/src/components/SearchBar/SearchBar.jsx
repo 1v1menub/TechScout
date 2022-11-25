@@ -9,9 +9,9 @@ function SearchBar() {
     event.preventDefault();
 
     try {
-      response = await searchProductByName(search);
+      const response = await searchProductByName(search);
     } catch (e) {
-      print(e);
+      console.log(e);
       alert('Error while searching product');
     }
   };
