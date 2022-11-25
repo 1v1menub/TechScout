@@ -34,7 +34,6 @@
 .product-card-top-cont {
     background-color: transparent;
     min-height: 42%;
-    /* max-height:330px; */
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
 
@@ -42,8 +41,6 @@
     border-top-left-radius: 20px;
     background-size: cover;
     object-fit: 100%;
-    /* background-position: center; 
-    background-repeat: no-repeat; */
 }
 
 .product-card-rating-cont {

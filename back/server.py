@@ -2,12 +2,47 @@ from dotenv import load_dotenv
 from flask import jsonify
 from flask import request, json
 from flask import Flask
-from endpoints.product.get import getallqueryid, getallquery, getonequeryid, getproductidlist, productidexists, getstoreidlist, storeidexists
+from endpoints.product.get import (
+    getallqueryid,
+    getallquery,
+    getonequeryid,
+    getproductidlist,
+    productidexists,
+    getstoreidlist,
+    storeidexists,
+)
+from endpoints.product.post import (
+    insert_general_product,
+    insert_store_product,
+    insert_new_store,
+)
+from endpoints.product.put import (
+    put_store_products_base_price,
+    put_store_products_stock,
+    put_store_products_webpage_view,
+    put_product_product_name,
+    put_product_category,
+    put_product_subcategory,
+    put_product_description,
+    put_product_tags,
+    put_store_store_name,
+    put_store_online,
+    put_store_physical_store_count,
+    put_store_contact_phone,
+    put_store_address,
+    put_store_lat_lon,
+)
+from endpoints.product.delete import (
+    del_product_id,
+    del_store_id,
+    del_store_products_id,
+)
+
+from endpoints.product.search import search_product_query
+from utils.db_functions import get_query_results, insert_query
 
 from flask_cors import CORS
 
-from utils.db_functions import get_query_results
-from endpoints.product.post import insert_general_product, insert_store_product
 
 load_dotenv("../.env")
 
@@ -19,96 +54,167 @@ app.config["CORS_HEADERS"] = "Content-Type"
 """
 GET
 """
-@app.route("/api/allproducts/<id>")
-def allstoreproductsquery(id):
-    return getallqueryid({"store_id": id})
+
+
+@app.route("/api/allproducts/<s_id>")
+def allstoreproductsquery(s_id):
+    return getallqueryid({"store_id": s_id})
+
 
 @app.route("/api/allproducts/")
 def allproductsquery():
     return getallquery()
 
+
 @app.route("/api/oneproduct/<s_id>/<p_id>")
-def oneproductquery(s_id,p_id):    
+def oneproductquery(s_id, p_id):
     return getonequeryid({"store_id": s_id, "product_id": p_id})
+
 
 @app.route("/api/productids/")
 def productidquery():
     return getproductidlist()
 
-@app.route("/api/productids/<id>")
-def productidexistsquery(id):
-    return productidexists({"product_id": id})
+
+@app.route("/api/productids/<p_id>")
+def productidexistsquery(p_id):
+    return productidexists({"product_id": p_id})
+
 
 @app.route("/api/storeids/")
 def storeidquery():
     return getstoreidlist()
 
-@app.route("/api/storeids/<id>")
-def storeidexistsquery(id):
-    return storeidexists({"store_id": id})
+
+@app.route("/api/storeids/<s_id>")
+def storeidexistsquery(s_id):
+    return storeidexists({"store_id": s_id})
+
 
 """
 POST
 """
-@app.route("/api/queryproductsbyname", methods=["POST"])
-def namequery():
-    if request.method == "POST":
-        data = json.loads(request.data)
-        search_query = data["search_query"]
-        max_returns = 25
 
-        # return jsonify(get_query_results("SELECT * FROM product WHERE product_name LIKE '%{}%' LIMIT {};".format(search_query, max_returns)))
-        # * BETTER SEARCH
-        # return jsonify(
-        #     get_query_results(
-        #         f"SELECT * FROM product WHERE SOUNDEX('{search_query}') = SOUNDEX(product_name)\
-        #     or product_name like '%{search_query}%' ORDER BY SIMILARITY(product_name,'{search_query}') DESC LIMIT {max_returns};"
-        #     )
-        # )
-        # * EVENBETTER SEARCH
-        # return jsonify(
-        #     get_query_results(
-        #         f"select * from (select store_products.* from store_products where store_products.base_price = (select min(base_price)\
-        #         from store_products product where product.product_id  = store_products.product_id)) AS s1 join product using(product_id)\
-        #         WHERE SOUNDEX('{search_query}') = SOUNDEX(product_name) or product_name ilike '%{search_query}%'\
-        #         ORDER BY SIMILARITY(product_name,'{search_query}') DESC LIMIT {max_returns};"
-        #     )
-        # )
-        # * SUPERDUPEREVENBETTER SEARCH (with tags)
-        as_tags = search_query.replace(' ', '|')
-        # device|stuff|tags
-        # tags ~ '{as_tags}'
-        return jsonify(
-            get_query_results(
-                f"select * from (select store_products.* from store_products where store_products.base_price = (select min(base_price)\
-                from store_products product where product.product_id  = store_products.product_id)) AS s1 join product using(product_id)\
-                WHERE SOUNDEX('{search_query}') = SOUNDEX(product_name) or product_name ilike '%{search_query}%' or tags ~ '{as_tags}'\
-                ORDER BY SIMILARITY(product_name,'{search_query}') DESC LIMIT {max_returns};"
-            )
-        )
-
-    
 
 @app.route("/api/insertgeneralproduct", methods=["POST"])
 def insert_general_prod():
-    if request.method == "POST":
-        return insert_general_product(request)
+    return insert_general_product(request)
 
 
 @app.route("/api/insertstoreproduct", methods=["POST"])
 def insert_store_prod():
-    if request.method == "POST":
-        return insert_store_product(request)
+    return insert_store_product(request)
 
 
-    
-# store_id = 0
-# product_id = 3
-# base_price = 132.29
-# stock = 2
-# webpage_view = "https://media.tenor.com/pMhSj9NfCXsAAAAd/saul-goodman-better-call-saul.gif"
-# print(jsonify(get_query_results(f"INSERT INTO store_products (store_id, product_id, base_price, stock, webpage_view) VALUES ('{store_id}',\
-#         '{product_id}', '{base_price}', '{stock}', '{webpage_view}');"))   )
+@app.route("/api/insertnewstore", methods=["POST"])
+def store_insert_new():
+    return insert_new_store(request)
+
+
+"""
+SEARCH
+"""
+
+
+@app.route("/api/queryproductsbyname", methods=["POST"])
+def namequery():
+    return search_product_query(request)
+
+
+"""
+PUT
+"""
+# * store_products
+@app.route("/api/put/store_products/base_price", methods=["POST"])
+def put_store_products_base_price_():
+    return put_store_products_base_price(request)
+
+
+@app.route("/api/put/store_products/stock", methods=["POST"])
+def put_store_products_stock_():
+    return put_store_products_stock(request)
+
+
+@app.route("/api/put/store_products/webpage_view", methods=["POST"])
+def put_store_products_webpage_view_():
+    return put_store_products_webpage_view(request)
+
+
+# * product
+@app.route("/api/put/product/product_name", methods=["POST"])
+def put_product_product_name_():
+    return put_product_product_name(request)
+
+
+@app.route("/api/put/product/category", methods=["POST"])
+def put_product_category_():
+    return put_product_category(request)
+
+
+@app.route("/api/put/product/subcategory", methods=["POST"])
+def put_product_subcategory_():
+    return put_product_subcategory(request)
+
+
+@app.route("/api/put/product/description", methods=["POST"])
+def put_product_description_():
+    return put_product_description(request)
+
+
+@app.route("/api/put/product/tags", methods=["POST"])
+def put_product_tags_():
+    return put_product_tags(request)
+
+
+# * store
+@app.route("/api/put/store/store_name", methods=["POST"])
+def put_store_store_name_():
+    return put_store_store_name(request)
+
+
+@app.route("/api/put/store/online", methods=["POST"])
+def put_store_online_():
+    return put_store_online(request)
+
+
+@app.route("/api/put/store/physical_store_count", methods=["POST"])
+def put_store_physical_store_count_():
+    return put_store_physical_store_count(request)
+
+
+@app.route("/api/put/store/contact_phone", methods=["POST"])
+def put_store_contact_phone_():
+    return put_store_contact_phone(request)
+
+
+@app.route("/api/put/store/address", methods=["POST"])
+def put_store_address_():
+    return put_store_address(request)
+
+
+@app.route("/api/put/store/lat_lon", methods=["POST"])
+def put_store_lat_lon_():
+    return put_store_lat_lon(request)
+
+
+"""
+DELETE
+"""
+
+
+@app.route("/api/del/product/<p_id>")
+def del_product_id_(p_id):
+    return del_product_id({"product_id": p_id})
+
+
+@app.route("/api/del/store/<s_id>")
+def del_store_id_(s_id):
+    return del_store_id({"store_id": s_id})
+
+
+@app.route("/api/del/store_products/<s_id>/<p_id>")
+def del_store_products_id_(s_id, p_id):
+    return del_store_products_id({"store_id": s_id, "product_id": p_id})
 
 
 if __name__ == "__main__":
