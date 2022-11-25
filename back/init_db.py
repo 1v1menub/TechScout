@@ -2,15 +2,39 @@ from faker import Faker
 from random import choice, randint, sample, random
 from utils.db_functions import insert_query, get_query_results
 from requests import get
-
+import random
 import itertools
 
-def create_stores():
+
+image_items = [
+  "https://i.imgur.com/BJbzjr8.png",
+  "https://i.imgur.com/rTsNmDl.png",
+  "https://i.imgur.com/U2lGr4o.png",
+  "https://i.imgur.com/yrOpHGx.png",
+  "https://i.imgur.com/At2DUTb.png",
+  "https://i.imgur.com/DtXFNQq.png",
+  "https://i.imgur.com/Incoh8R.png",
+  "https://i.imgur.com/3aqmCo0.png",
+  "https://i.imgur.com/OH0xvUy.png",
+  "https://i.imgur.com/eQj1JMI.png",
+  "https://i.imgur.com/2jkZs3g.png",
+  "https://i.imgur.com/ronmZn0.png",
+  "https://i.imgur.com/hm7iaGI.png",
+  "https://i.imgur.com/uaVpteZ.png",
+  "https://i.imgur.com/uAY2rv9.png"
+]
+
+
+
+
+
+
+def create_store():
     faker = Faker()
     companies = [faker.company() for _ in range(10)]
 
     query = """
-            INSERT INTO stores 
+            INSERT INTO store 
             (
                 store_name, 
                 online, 
@@ -44,18 +68,19 @@ def create_stores():
             ),"""
 
     query = query[:-1] + ";"
+    # print(query)
     insert_query(query)
 
 
-def create_delivery_zones():
+def create_delivery_zone():
 
-    delivery_zones = ['La Molina', 'San Isidro', 'Miraflores', 'Surco', 'San Borja', 
+    delivery_zone = ['La Molina', 'San Isidro', 'Miraflores', 'Surco', 'San Borja', 
                 'San Miguel', 'Lince', 'Barranco', 'San Juan de Lurigancho', 
                 'San Juan de Miraflores', 'Los Olivos', 'La Victoria',
                 'Santa Anita', 'San Luis', 'San Martin de Porres']
     
     query = f"""
-        INSERT INTO delivery_zones 
+        INSERT INTO delivery_zone 
         (
             delivery_zone_name,
             parent_zone_id
@@ -71,14 +96,14 @@ def create_delivery_zones():
     main_delivery_zone_id = insert_query(query, returning=True)['delivery_zone_id'][0]
 
     query = """
-        INSERT INTO delivery_zones 
+        INSERT INTO delivery_zone 
         (
             delivery_zone_name,
             parent_zone_id
         )
         VALUES
     """
-    for delivery in delivery_zones:
+    for delivery in delivery_zone:
         query = f"""
             (
                 '{delivery}',
@@ -89,15 +114,16 @@ def create_delivery_zones():
     insert_query(query)
 
 def create_store_delivery_zones():
-    store_ids_q = "SELECT store_id FROM stores;"
-    delivery_zones_ids_q = "SELECT delivery_zone_id FROM delivery_zones;"
+    store_ids_q = "SELECT store_id FROM store;"
+    delivery_zone_ids_q = "SELECT delivery_zone_id FROM delivery_zone;"
 
     store_ids = get_query_results(store_ids_q)
-    delivery_zones_ids = get_query_results(delivery_zones_ids_q)
+    delivery_zone_ids = get_query_results(delivery_zone_ids_q)
 
-    combinations = list(itertools.product(store_ids, delivery_zones_ids))
+    combinations = list(itertools.product(store_ids, delivery_zone_ids))
     combinations = sample(combinations, 10)
 
+    # print(combinations)
     query = """
         INSERT INTO store_delivery_zones
         (
@@ -109,8 +135,8 @@ def create_store_delivery_zones():
     for store_id, delivery_zone_id in combinations:
         query += f"""
         (
-            {store_id},
-            {delivery_zone_id}
+            {dict(store_id)['store_id']},
+            {dict(delivery_zone_id)['delivery_zone_id']}
         ),"""
 
     query = query[:-1] + ";"
@@ -161,6 +187,9 @@ def create_products():
         description,
         tags
     )
+    
+    VALUES
+
     """
     for product in technology_products:
         query += f"""
@@ -176,8 +205,9 @@ def create_products():
     insert_query(query)
 
 def create_store_products():
+    print("storeprods")
     product_ids_q = "SELECT product_id FROM product;"
-    store_ids_q = "SELECT store_id FROM stores;"
+    store_ids_q = "SELECT store_id FROM store;"
 
     product_ids = get_query_results(product_ids_q)
     store_ids = get_query_results(store_ids_q)
@@ -199,23 +229,19 @@ def create_store_products():
     for store_id, product_id in combinations:
         base_price = faker.pyfloat(left_digits=2, right_digits=2, positive=True)
         stock = randint(0, 100)
-        webpage_view = f'{faker.url()}'
-        query += f"""
-        (
-            {store_id},
-            {product_id},
-            {base_price},
-            {stock},
-            {webpage_view}
-        ),"""
+        # webpage_view = f'{faker.url()}'
+        webpage_view = random.choice(image_items)
+        query += f"({dict(store_id)['store_id']},{dict(product_id)['product_id']},{base_price},{stock},'{webpage_view}'),"
     
     query = query[:-1] + ";"
+    # print(query)
     insert_query(query)
 
 def create_store_owner():
+    print("storeown")
     faker = Faker()
 
-    store_ids_q = "SELECT store_id FROM stores;"
+    store_ids_q = "SELECT store_id FROM store;"
 
     query = """
             INSERT INTO store_owner
@@ -230,24 +256,24 @@ def create_store_owner():
     for i in range(10):
         query += f"""
             (
-                {faker.name()},
-                {faker.phone_number()},
-                {faker.email()}
+                '{faker.name()}',
+                '{faker.phone_number()}',
+                '{faker.email()}'
             ),"""
 
     query = query[:-1] + ";"
     insert_query(query)
 
 
-def create_delivery_zones():
+def create_delivery_zone():
 
-    delivery_zones = ['La Molina', 'San Isidro', 'Miraflores', 'Surco', 'San Borja', 
+    delivery_zone = ['La Molina', 'San Isidro', 'Miraflores', 'Surco', 'San Borja', 
                 'San Miguel', 'Lince', 'Barranco', 'San Juan de Lurigancho', 
                 'San Juan de Miraflores', 'Los Olivos', 'La Victoria',
                 'Santa Anita', 'San Luis', 'San Martin de Porres']
     
     query = f"""
-        INSERT INTO delivery_zones 
+        INSERT INTO delivery_zone 
         (
             delivery_zone_name,
             parent_zone_id
@@ -259,29 +285,33 @@ def create_delivery_zones():
         )
         RETURNING delivery_zone_id;
     """
-    main_delivery_zone_id = insert_query(query, returning=True)['delivery_zone_id'][0]
+    main_delivery_zone_id = insert_query(query, returning=True)
 
-    delivery_zones_q = """
-        INSERT INTO delivery_zones
+    delivery_zone_q = """
+        INSERT INTO delivery_zone
         (
             delivery_zone_name,
             parent_zone_id
         )
+        VALUES
+        
     """
-
-    for delivery in delivery_zones:
-        delivery_zones_q += f"""
+    mdzi_dict = [dict(row) for row in main_delivery_zone_id]
+    for delivery in delivery_zone:
+        delivery_zone_q += f"""
             (
                 '{delivery}',
-                {main_delivery_zone_id}
+                {mdzi_dict[0]['delivery_zone_id']}
             ),"""
     
-    delivery_zones_q = delivery_zones_q[:-1] + ";"
-    insert_query(delivery_zones_q)
+    delivery_zone_q = delivery_zone_q[:-1] + ";"
+    
+    # print(delivery_zone_q) 
+    insert_query(delivery_zone_q)
 
 def create_promotions():
     product_ids_q = "SELECT product_id FROM product;"
-    store_ids_q = "SELECT store_id FROM stores;"
+    store_ids_q = "SELECT store_id FROM store;"
 
     product_ids = get_query_results(product_ids_q)
     store_ids = get_query_results(store_ids_q)
@@ -303,11 +333,11 @@ def create_promotions():
     for store_id, product_id in combinations:
         start_date = faker.date_time_between(start_date='-1y', end_date='now', tzinfo=None)
         end_date = faker.date_time_between(start_date='now', end_date='+1y', tzinfo=None)
-        discount_percentage = random()
+        discount_percentage = randint(1, 60)
         query += f"""
         (
-            {store_id},
-            {product_id},
+            {dict(store_id)['store_id']},
+            {dict(product_id)['product_id']}
             {start_date},
             {end_date},
             {discount_percentage}
@@ -320,9 +350,9 @@ def create_all():
     ip = get('https://api.ipify.org').text
     print(f'My public IP address is: {ip}')
 
-    create_stores()
-    print('Stores created')
-    create_delivery_zones()
+    create_store()
+    print('Store created')
+    create_delivery_zone()
     print('Delivery zones created')
     create_store_delivery_zones()
     print('Store delivery zones created')
@@ -332,8 +362,8 @@ def create_all():
     print('Store products created')
     create_store_owner()
     print('Store owners created')
-    create_promotions()
-    print('Promotions created')
+    # create_promotions()
+    # print('Promotions created')
 
 def delete_all():
     delete_q  = """ 
@@ -342,8 +372,8 @@ def delete_all():
         DELETE FROM store_products;
         DELETE FROM product;
         DELETE FROM store_delivery_zones;
-        DELETE FROM delivery_zones;
-        DELETE FROM stores;
+        DELETE FROM delivery_zone;
+        DELETE FROM store;
     """
     insert_query(delete_q)
 

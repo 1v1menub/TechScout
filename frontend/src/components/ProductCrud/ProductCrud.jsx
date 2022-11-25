@@ -1,15 +1,26 @@
 import MaterialTable from "material-table";
 import { useState, useEffect } from "react";
 import { forwardRef } from "react";
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
 
 import AddBox from "@mui/icons-material/AddBox";
 import getProducts from "../../api/products.js/getProducts";
+import postProduct from "../../api/products.js/postProduct";
+import getStoreIds from "../../api/getStoreIds";
+
 const ProductCrud = () => {
   const [products, setProducts] = useState(undefined);
   const [columns, setColumns] = useState(undefined);
+  const [storeIds, setStoreIds] = useState(undefined);
+
   const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
   };
+
   useEffect(() => {
     const getProductsAsync = async () => {
       try {
@@ -27,7 +38,20 @@ const ProductCrud = () => {
         alert("Error while getting products");
       }
     };
+
+    const getStoreIdsAsync = async () => {
+      try {
+        const response = await getStoreIds();
+        const storeIdsApi = response.data.map((store) => store.store_id);
+        setStoreIds(storeIdsApi);
+      } catch (e) {
+        console.log(e);
+        alert("Error while getting store ids");
+      }
+    };
+
     getProductsAsync();
+    getStoreIdsAsync();
   }, []);
 
   const [age, setAge] = useState("");
@@ -36,48 +60,47 @@ const ProductCrud = () => {
     setAge(event.target.value);
   };
 
+  const onDelete = async (rowData) => {
+    const newProducts = products.filter((product) => {
+      return product.product_id !== rowData.product_id;
+    });
+    console.log("newProducts", newProducts);
+    setProducts(newProducts);
+  };
+
+  const onAdd = async (newData) => {
+    if (!storeIds.includes(+newData.store_id)) {
+      alert("Store id does not exist");
+      return;
+    }
+
+    try {
+      const response = await postProduct(newData);
+      setProducts([...products, newData]);
+    } catch (e) {
+      console.log(e);
+      alert("Error while adding product");
+    }
+  };
+
   return (
     <div className="testcont3">
       {products ? (
         <>
-          {/* <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Age</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={age}
-              label="Age"
-              onChange={handleChange}
-            >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
-            </Select>
-          </FormControl> */}
           <MaterialTable
             title="Multiple Actions Preview"
             columns={columns}
             data={products}
             icons={tableIcons}
-            actions={[
-              {
-                icon: "save",
-                tooltip: "Save User",
-                onClick: (event, rowData) => alert("You saved " + rowData.name),
-              },
-              {
-                icon: "delete",
-                tooltip: "Delete User",
-                onClick: (event, rowData) =>
-                  alert("You want to delete " + rowData.name),
-              },
-              {
-                icon: "add",
-                tooltip: "Add User",
-                isFreeAction: true,
-                onClick: (event) => alert("You want to add a new row"),
-              },
-            ]}
+            onPageChange={() => {}}
+            options={{
+              exportButton: true,
+            }}
+            editable={{
+              onRowAdd: (newData) => onAdd(newData),
+              onRowUpdate: (newData, oldData) => {},
+              onRowDelete: (oldData) => onDelete(oldData),
+            }}
           />
         </>
       ) : undefined}

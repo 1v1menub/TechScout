@@ -33,10 +33,13 @@ def get_query_results(query):
         conn.close()
         
         return results
-    except:
+    # except:
+    #     print("I am unable to execute the query")
+    #     return None
+    except Exception as e:
         print("I am unable to execute the query")
+        print(e)
         return None
-
 
 def insert_query(query, returning=False):
     try:
@@ -52,6 +55,11 @@ def insert_query(query, returning=False):
         cur.close()
         conn.close()
         return True
-    except:
+    # except:
+    #     print("I am unable to execute the query")
+    #     return False
+    except Exception as e:
         print("I am unable to execute the query")
+        print(e)
         return False
+
