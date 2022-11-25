@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SearchItem from './components/SearchItem/SearchItem';
 import ProductPageMain from './components/ProductPageMain/ProductPageMain';
@@ -18,9 +18,13 @@ function App() {
     setSearchResult(searchResultNew);
   };
 
-  const [featured, setFeatured] = useState(() => {
-    return getProducts()
-  })
+  useEffect(() => { 
+    getProducts().then((response) => {
+      setFeatured(response.data);
+    });
+  }, [])
+
+  const [featured, setFeatured] = useState([]);
 
   return (
     <div className="App">
