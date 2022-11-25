@@ -1,7 +1,7 @@
 
 .navbar {
   position:sticky;
-  display: flex;
+  
   flex-direction: column;
   /* justify-content: space-between; */
   justify-content: start;
@@ -11,7 +11,6 @@
   width: 30vw;
   min-width: 220px;
   max-width: 300px;
-  /* width: 35%; */
   align-items: left;
   /* gap: 5%; */
 

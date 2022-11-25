@@ -37,7 +37,24 @@ function App() {
           />
 
           {/* enviar busqueda aca */}
-          <Route path="/search" element={<SearchResult search={searchResult} />} />
+          <Route
+            path="/search"
+            element={
+              <div className="testcont4">
+                <SideBar
+                  user_image={UserIcon}
+                  // user_image="https://prnewswire2-a.akamaihd.net/p/1893751/sp/189375100/thumbnail/entry_id/0_5yec68sk/def_height/2700/def_width/2700/version/100012/type/1"
+                  user_name="PEPE"
+                />
+                <div className="main-body2">
+                  <SearchBar updateSetSearchResult={updateSetSearchResult} />
+                <SearchResult search={searchResult} />
+                </div>
+              </div>
+              // <SearchResult search={searchResult} />
+
+            }
+          />
 
           <Route
             path="/productpagemain"
@@ -167,7 +184,6 @@ function App() {
                     />
                   </div>
                 </div>
-                {/* <WelcomePage /> */}
               </div>
             }
           />

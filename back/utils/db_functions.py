@@ -20,14 +20,18 @@ def get_db_connection():
       return None
 
 def get_query_results(query):
-    print("A")
     try:
+        print("C")
+        
         conn = get_db_connection()
         cur = conn.cursor(cursor_factory=RealDictCursor)
         cur.execute(query)
+        print("D")
         results = cur.fetchall()
+        print("E")
         cur.close()
         conn.close()
+        
         return results
     except:
         print("I am unable to execute the query")

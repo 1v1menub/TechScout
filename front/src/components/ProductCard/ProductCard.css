@@ -6,6 +6,8 @@
     margin-right: 2.5vw;
     /* aspect-ratio: 1/1; */
     min-width:250px;
+    min-height:250px;
+
     max-height:350px;
     /* max-width:250px; */
     /* max-height:10px; */
@@ -31,7 +33,7 @@
 
 .product-card-top-cont {
     background-color: transparent;
-    min-height: 44%;
+    min-height: 42%;
     /* max-height:330px; */
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
