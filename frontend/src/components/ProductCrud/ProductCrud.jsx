@@ -69,6 +69,10 @@ const ProductCrud = () => {
     setProducts(newProducts);
   };
 
+  const onUpdate = async (newData, oldData) => {
+    console.log("onUpdate");
+  };
+
   const onAdd = async (newData) => {
     if (!storeIds.includes(+newData.store_id)) {
       alert("Store id does not exist");
@@ -101,7 +105,7 @@ const ProductCrud = () => {
             }}
             editable={{
               onRowAdd: (newData) => onAdd(newData),
-              onRowUpdate: (newData, oldData) => {},
+              onRowUpdate: (newData, oldData) => onUpdate(newData, oldData),
               onRowDelete: (oldData) => onDelete(oldData),
             }}
           />

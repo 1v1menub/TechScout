@@ -1,8 +1,9 @@
+import { useState } from "react";
 import leftarrow from "../../assets/leftarrow.svg";
 import rightarrow from "../../assets/rightarrow.svg";
-
+import "./LandingDisplay.css";
 function LandingDisplay({ products }) {
-  const [index, setIndex] = [0];
+  const [index, setIndex] = useState(0);
 
   const handleNext = () => {
     if (index + 1 >= products.length) {
@@ -26,7 +27,7 @@ function LandingDisplay({ products }) {
 
   return (
     <div
-      style={{ backgroundImage: products[index].webpage_view }}
+      style={{ backgroundImage: `url(${products[index].webpage_view})` }}
       className="lp-main-cont"
     >
       <img className="lp-leftarrow" onClick={handleNext} src={leftarrow}></img>

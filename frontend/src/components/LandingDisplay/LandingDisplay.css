@@ -1,8 +1,10 @@
-
 .lp-main-cont {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 40vh;
+    margin: 10px;
+    background-position: center;
 }
 
 .lp-leftarrow {
