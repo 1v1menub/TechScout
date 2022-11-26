@@ -11,7 +11,7 @@ import UserIcon from './assets/user_icon.png';
 import './App.css';
 import SearchBar from './components/SearchBar/SearchBar';
 import getProducts from './api/products.js/getProducts';
-
+import LandingDisplay from './components/LandingDisplay/LandingDisplay';
 function App() {
   const [searchResult, setSearchResult] = useState([]);
   const updateSetSearchResult = (searchResultNew) => {
@@ -137,6 +137,9 @@ function App() {
                 />
                 <div className="main-body">
                   <SearchBar updateSetSearchResult={updateSetSearchResult} />
+                  {
+                    featured.length > 0  ? <LandingDisplay products={featured} /> : <></>
+                  }
                   <div className="testcont2">
                     {featured.map((product) => {
                       return <ProductCard image={product.webpage_view} name={product.product_name} rating={(Math.random() * 5).toFixed(1)} tags={product.tags.split(", ")} dtime={randomDtime()}/> })}
