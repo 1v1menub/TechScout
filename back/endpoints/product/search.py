@@ -8,11 +8,7 @@ def search_product_query(request):
         data = json.loads(request.data)
         search_query = data["search_query"]
         max_returns = 25
-
-        # * SUPERDUPEREVENBETTER SEARCH (with tags)
-        # device|stuff|tags
-        # tags ~ '{as_tags}'
-
+        
         as_tags = search_query.replace(" ", "|")
         return jsonify(
             get_query_results(
