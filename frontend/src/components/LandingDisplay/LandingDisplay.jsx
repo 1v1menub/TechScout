@@ -26,16 +26,22 @@ function LandingDisplay({ products }) {
   };
 
   return (
-    <div
-      style={{ backgroundImage: `url(${products[index].webpage_view})` }}
-      className="lp-main-cont"
-    >
-      <img className="lp-leftarrow" onClick={handleNext} src={leftarrow}></img>
-      <img
-        className="lp-rightarrow"
-        onClick={handlePrev}
-        src={rightarrow}
-      ></img>
+    <div className="landing-container">
+      <div
+        style={{ backgroundImage: `url(${products[index].webpage_view})` }}
+        className="lp-main-cont"
+      >
+        <img
+          className="lp-leftarrow"
+          onClick={handleNext}
+          src={leftarrow}
+        ></img>
+        <img
+          className="lp-rightarrow"
+          onClick={handlePrev}
+          src={rightarrow}
+        ></img>
+      </div>
     </div>
   );
 }
