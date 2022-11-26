@@ -9,7 +9,8 @@ import Modal from "@mui/material/Modal";
 
 import AddBox from "@mui/icons-material/AddBox";
 import getProducts from "../../api/products.js/getProducts";
-import postProduct from "../../api/products.js/postProduct";
+import postGeneralProduct from "../../api/products.js/postGeneralProduct";
+import postStoreProduct from "../../api/products.js/postStoreProduct";
 import getStoreIds from "../../api/getStoreIds";
 
 const ProductCrud = () => {
@@ -68,6 +69,10 @@ const ProductCrud = () => {
     setProducts(newProducts);
   };
 
+  const onUpdate = async (newData, oldData) => {
+    console.log("onUpdate");
+  };
+
   const onAdd = async (newData) => {
     if (!storeIds.includes(+newData.store_id)) {
       alert("Store id does not exist");
@@ -75,7 +80,9 @@ const ProductCrud = () => {
     }
 
     try {
-      const response = await postProduct(newData);
+      const response = await postGeneralProduct(newData);
+      console.log("response", response);
+      // const responseStore = await postStoreProduct(newData);
       setProducts([...products, newData]);
     } catch (e) {
       console.log(e);
@@ -98,7 +105,7 @@ const ProductCrud = () => {
             }}
             editable={{
               onRowAdd: (newData) => onAdd(newData),
-              onRowUpdate: (newData, oldData) => {},
+              onRowUpdate: (newData, oldData) => onUpdate(newData, oldData),
               onRowDelete: (oldData) => onDelete(oldData),
             }}
           />

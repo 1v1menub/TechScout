@@ -11,7 +11,7 @@ import UserIcon from './assets/user_icon.png';
 import './App.css';
 import SearchBar from './components/SearchBar/SearchBar';
 import getProducts from './api/products.js/getProducts';
-
+import LandingDisplay from './components/LandingDisplay/LandingDisplay';
 function App() {
   const [searchResult, setSearchResult] = useState([]);
   const updateSetSearchResult = (searchResultNew) => {
@@ -25,6 +25,12 @@ function App() {
   }, [])
 
   const [featured, setFeatured] = useState([]);
+
+  const randomDtime = () => {
+    const posibilidades = ["2-3", "3-5", "7-10", "10-14"]
+    return posibilidades[(Math.floor(Math.random() * 4))]
+  }
+
 
   return (
     <div className="App">
@@ -131,25 +137,12 @@ function App() {
                 />
                 <div className="main-body">
                   <SearchBar updateSetSearchResult={updateSetSearchResult} />
-
+                  {
+                    featured.length > 0  ? <LandingDisplay products={featured} /> : <></>
+                  }
                   <div className="testcont2">
                     {featured.map((product) => {
-                      return <ProductCard image={product.webpage_view} name={product.product_name} rating={4.9} tags={product.tags.split(", ")} dtime="2-3" />
-                    })}
-                    <ProductCard
-                      image="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8OHx8fGVufDB8fHx8&w=1000&q=80"
-                      name="Asus Gamer-Beast 4545 18''"
-                      rating={4.6}
-                      tags={['Asus', 'Gaming', 'Nvidia', 'SSD']}
-                      dtime="2-3"
-                    />
-                    <ProductCard
-                      image="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8OHx8fGVufDB8fHx8&w=1000&q=80"
-                      name="Asus Gamer-Beast 4545 18''"
-                      rating={4.6}
-                      tags={['Asus', 'Gaming', 'Nvidia', 'SSD']}
-                      dtime="2-3"
-                    />
+                      return <ProductCard image={product.webpage_view} name={product.product_name} rating={(Math.random() * 5).toFixed(1)} tags={product.tags.split(", ")} dtime={randomDtime()}/> })}
                   </div>
                 </div>
               </div>
