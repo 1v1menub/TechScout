@@ -1,0 +1,16 @@
+
+.lp-main-cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lp-leftarrow {
+    margin-right: auto;
+    width: 30px;
+}
+
+.lp-rightarrow {
+    margin-left: auto;
+    width: 30px;
+}
