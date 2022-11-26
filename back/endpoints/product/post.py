@@ -33,7 +33,8 @@ def insert_general_product(request):
         return jsonify(
             insert_query(
                 f"INSERT INTO product (product_name, category, subcategory, description, tags)\
-                    VALUES ('{product_name}', '{category}', '{subcategory}', '{description}', '{tags}');"
+                    VALUES ('{product_name}', '{category}', '{subcategory}', '{description}', '{tags}');",
+                True
             )
         )
 
